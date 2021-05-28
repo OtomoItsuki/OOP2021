@@ -6,5 +6,10 @@ using System.Threading.Tasks;
 
 namespace Exercise2 {
     class InchConverter {
+        private const double ratio = 0.3048;
+
+        public static double ToMeter(int inch) {
+            return inch * ratio;
+        }
     }
 }

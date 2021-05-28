@@ -12,8 +12,8 @@ namespace Exercise2 {
 
         private static void PrintInchList(int start, int stop) {
             for (int inch = start; inch <= stop; inch++) {
-                double meter = InchConverter.ToMeter(inch);
 
+                double meter = InchConverter.ToMeter(inch);
             }
         }
     }
