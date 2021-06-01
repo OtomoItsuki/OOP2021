@@ -19,8 +19,8 @@ namespace Exercise2 {
         private static void PrintMeterToInchList(int start, int stop) {
             for (int meter = start; meter <= stop; meter++) {
 
-                double feet = InchConverter.FromMeter(meter);
-                Console.WriteLine("{0} m = {1:0.0000}inch", meter, feet);
+                double inch = InchConverter.FromMeter(meter);
+                Console.WriteLine("{0} m = {1:0.0000}inch", meter, inch);
             }
         }
         private static void PrintInchToMeterList(int start, int stop) {
