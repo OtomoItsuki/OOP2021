@@ -10,8 +10,8 @@ namespace Exercise3 {
         static void Main(string[] args) {
             var sales = new SalesCounter("Sales.csv");
 
-            var amountPerStore = sales.GetPerStroreSales();
-            foreach (var obj in amountPerStore) {
+            var amountPerCategory = sales.GetPerCategorySales();
+            foreach (var obj in amountPerCategory) {
                 Console.WriteLine("{0} {1}", obj.Key, obj.Value);
             }
         }

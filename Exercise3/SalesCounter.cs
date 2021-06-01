@@ -29,14 +29,15 @@ namespace Exercise3 {
             }
             return sales;
         }
-        public IDictionary<string, int> GetPerStroreSales() {
+        //商品カテゴリ別売上を求める
+        public IDictionary<string, int> GetPerCategorySales() {
             var dict = new Dictionary<string, int>();
             foreach (var sale in _sales) {
                 if (dict.ContainsKey(sale.ProductCategory))
-                    //既にコレクションに店舗が設定されている
+                    //既にコレクションに商品カテゴリが設定されている
                     dict[sale.ProductCategory] += sale.Amount;
                 else
-                    //コレクションへ店舗を登録
+                    //コレクションへ商品カテゴリを登録
                     dict[sale.ProductCategory] = sale.Amount;
             }
             return dict;
