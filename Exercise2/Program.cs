@@ -7,14 +7,28 @@ using System.Threading.Tasks;
 namespace Exercise2 {
     class Program {
         static void Main(string[] args) {
-            PrintInchList(1, 10);
+            if (args.Length >= 1 && args[0] == "-toi") {
+                //インチからメートルへの対応表を出力
+                PrintMeterToInchList(0, 10);
+            }
+            else {
+                //メートルからインチへの対応表を出力
+                PrintInchToMeterList(0, 10);
+            }
         }
 
-        private static void PrintInchList(int start, int stop) {
+        private static void PrintInchToMeterList(int start, int stop) {
             for (int inch = start; inch <= stop; inch++) {
 
                 double meter = InchConverter.ToMeter(inch);
                 Console.WriteLine("{0} inch = {1:0.0000}m", inch, meter);
+            }
+        }
+        private static void PrintMeterToInchList(int start, int stop) {
+            for (int meter = start; meter <= stop; meter++) {
+
+                double feet = InchConverter.fromMeter(meter);
+                Console.WriteLine("{0} m = {1:0.0000}inch", meter, feet);
             }
         }
     }
