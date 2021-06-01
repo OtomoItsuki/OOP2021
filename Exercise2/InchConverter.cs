@@ -12,7 +12,7 @@ namespace Exercise2 {
             return inch * ratio;
         }
 
-        internal static double fromMeter(int meter) {
+        internal static double FromMeter(int meter) {
             return meter / ratio;
         }
     }
