@@ -40,13 +40,16 @@ namespace Section01 {
 
         private static void Exercise1_3(List<int> numbers) {
             var query = numbers.Where(n => 50 <= n);
-            foreach (var n in query) {
-                Console.WriteLine(n);
+            foreach (var number in query) {
+                Console.WriteLine(number);
             }
         }
 
         private static void Exercise1_4(List<int> numbers) {
-            throw new NotImplementedException();
+            var query = numbers.Select(n => n * 2).ToList();
+            foreach (var number in query) {
+                Console.WriteLine(number);
+            }
         }
     }
 }
