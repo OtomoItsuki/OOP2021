@@ -9,18 +9,20 @@ namespace Section01 {
         static void Main(string[] args) {
             var sc = new SampleCode();
 
-            Console.WriteLine(sc.Count(5));
+            var numbers = new[] { 5, 3, 9, 6, 7, 5, 8, 1, 0, 5, 10, 4 };
+            var count = sc.Count(numbers, delegate (int n) { return n % 2 == 0; });
+            Console.WriteLine(count);
         }
     }
 
     class SampleCode {
-        public int Count(int num) {
-            var numbers = new[] { 5, 2, 9, 6, 7, 5, 8, 1, 0, 5, 10, 4 };
+        public int Count(int[] numbers, Predicate<int> judge) {
             int count = 0;
+
             foreach (var n in numbers) {
-                if (n == num) {
+                if (judge(n) == true) 
                     count++;
-                }
+                
             }
             return count;
         }
