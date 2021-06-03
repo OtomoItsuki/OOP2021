@@ -7,24 +7,29 @@ using System.Threading.Tasks;
 namespace Section01 {
     class Program {
         static void Main(string[] args) {
-            var sc = new SampleCode();
+            //var names = new List<string> {
+            //    "Tokyo", "New Delhi", "Bangkok", "London", "Paris", "Berlin", "Canberra", "Hong Kong",
+            //};
 
-            var numbers = new[] { 5, 3, 9, 6, 7, 5, 8, 1, 0, 5, 10, 4 };
-            var count = sc.Count(numbers, delegate (int n) { return n % 2 == 0; });
-            Console.WriteLine(count);
-        }
-    }
+            //IEnumerable<string> query = names.Where(s => s.Length <= 5)
+            //                            .Select(s=>s.ToLower());
 
-    class SampleCode {
-        public int Count(int[] numbers, Predicate<int> judge) {
-            int count = 0;
+            //foreach (string s in query) 
+            //    Console.WriteLine(s);
+            //
 
-            foreach (var n in numbers) {
-                if (judge(n) == true) 
-                    count++;
-                
-            }
-            return count;
+            string[] names = {
+                "Tokyo", "New Delhi", "Bangkok", "London", "Paris", "Berlin", "Canberra"  };
+            var query = names.Where(s => s.Length <= 5).ToList();
+
+            query.ForEach(Console.WriteLine);
+            foreach (var item in query)
+                Console.WriteLine(item);
+            Console.WriteLine("------");
+
+            names[0] = "Osaka";
+            foreach (var item in query)
+                Console.WriteLine(item);
         }
     }
 }
