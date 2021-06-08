@@ -19,11 +19,21 @@ namespace Section01 {
             //var num = list.Contains(key) ? 1 : 0;
             //Console.WriteLine(num);
 
-            string code = "12345";
-            //null合体演算子
-            var message = GetMessage(code) ?? DefaultMessage();
-            Console.WriteLine(message);
+            //string code = "12345";
+            ////null合体演算子
+            //var message = GetMessage(code) ?? DefaultMessage();
+            //Console.WriteLine(message);
+
+            var ret = GetProductA();
+
         }
+        private static Product GetProductA() {
+            Sale sale = new Sale();
+            sale.Product = new Product();
+            sale = null;
+            return sale?.Product;   //null条件演算子
+        }
+
         //スタブ
         private static object DefaultMessage() {
             return "Default Message";
@@ -31,5 +41,10 @@ namespace Section01 {
         private static object GetMessage(object code) {
             return code;
         }
+    }
+    class Sale {
+        public string ShopName { get; set; }
+        public int Amount { get; set; }
+        public Product Product { get; set; }
     }
 }
