@@ -24,6 +24,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Section01", "Chapter04\Section01\Section01.csproj", "{DAC7B01A-1FB3-4B6F-8E98-200FF63C43B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter04", "Chapter04", "{745407F1-F229-4D24-BB1A-258E15E74E20}"
+	ProjectSection(SolutionItems) = preProject
+		\\172.16.42.1\学生共有\#infosys2021\１期目\Person.cs = \\172.16.42.1\学生共有\#infosys2021\１期目\Person.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
