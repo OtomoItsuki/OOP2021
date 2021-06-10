@@ -24,8 +24,36 @@ namespace Section01 {
             //var message = GetMessage(code) ?? DefaultMessage();
             //Console.WriteLine(message);
 
-            var ret = GetProductA();
+            //var ret = GetProductA();
 
+            //int count = 0;
+
+            //Console.WriteLine($"後置：{count++}");
+
+            //Console.WriteLine($"前置：{++count}");
+
+            //var str= "123";
+
+            //int height;
+            //if (int.TryParse(str, out height)) {
+            //    Console.WriteLine(height);
+            //}
+            //else {
+            //    Console.WriteLine("変換できません");
+            //}
+
+            var Session = new Dictionary<string, object>();
+            Session["MyProduct"] = new Product();
+
+            var product = Session["MyProduct"] as Product;
+            if(product == null) {
+                //productが取得できなかった時の処理
+                Console.WriteLine("productが取得できなかった");
+            }
+            else {
+                //productが取得できなかった時の処理
+                Console.WriteLine("productが取得できた");
+            }
         }
         private static Product GetProductA() {
             Sale sale = new Sale();
@@ -43,8 +71,8 @@ namespace Section01 {
         }
     }
     class Sale {
-        public string ShopName { get; set; }
-        public int Amount { get; set; }
+        public string ShopName { get; set; } = "abcde";
+        public int Amount { get; set; } = 12340;
         public Product Product { get; set; }
     }
 }
