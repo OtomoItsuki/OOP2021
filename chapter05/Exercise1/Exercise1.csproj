@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{58E1F853-720B-4151-AA32-6E9924ABC9BA}</ProjectGuid>
+    <ProjectGuid>{37F3252B-BC0E-4519-BF14-51F74783E840}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Ecercise2</RootNamespace>
-    <AssemblyName>Exercise2</AssemblyName>
+    <RootNamespace>Exercise1</RootNamespace>
+    <AssemblyName>Exercise1</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -48,16 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Chapter04\Exercise\Exercise1\Exercise1.csproj">
-      <Project>{F9D6EBDA-6CC7-4E32-86ED-504322B610A0}</Project>
-      <Name>Exercise1</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Chapter04\Section01\Section01.csproj">
-      <Project>{dac7b01a-1fb3-4b6f-8e98-200ff63c43b8}</Project>
-      <Name>Section01</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

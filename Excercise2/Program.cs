@@ -21,25 +21,35 @@ namespace Exercise2 {
             Exercise2_4(ymCollections);
             Console.WriteLine("-----");
 
-        }
+            Exercise2_5(ymCollections);
 
-        private static void Exercise2_4(YearMonth[] ymCollections) {
-            var find = FindFirst21C(ymCollections);
         }
-
         private static void Exercise2_2(YearMonth[] ymCollections) {
             foreach (var yearMonth in ymCollections) {
                 Console.WriteLine(yearMonth);
             }
         }
-
         static YearMonth FindFirst21C(YearMonth[] ymCollections) {
             foreach (var yearMonth in ymCollections) {
-                if (yearMonth.Is21Century == true) {
+                if (yearMonth.Is21Century) {
                     return yearMonth;
                 }
             }
             return null;
         }
+
+        private static void Exercise2_4(YearMonth[] ymCollections) {
+            var yearMonth = FindFirst21C(ymCollections);
+            var s = yearMonth != null ? "21世紀のデータの年：" +yearMonth.Year.ToString() : "21世紀のデータはありません";
+            Console.WriteLine(s);
+        }
+        
+        private static void Exercise2_5(YearMonth[] ymCollections) {
+            var array = ymCollections.Select(ym => ym.AddOneMonth()).ToArray();
+            foreach (var yearMonth in array) {
+                Console.WriteLine(yearMonth);
+            }
+        }
+
     }
 }

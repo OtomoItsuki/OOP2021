@@ -29,5 +29,6 @@ namespace Exercise1 {
         public override string ToString() {
             return $"{Year}年{Month}月";
         }
+
     }
 }
