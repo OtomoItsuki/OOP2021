@@ -19,15 +19,13 @@ namespace Exercise1 {
             }
             Console.WriteLine("-----");
             #endregion
-            #region 問題5.2
-            var n = int.Parse(Console.ReadLine());
-            Console.WriteLine(n.ToString("#,0"));
-            Console.WriteLine("-----");
-            #endregion
+
 
 #endif
             #region 問題5.3
             //var s = "Jackdaws love my big sphinx of quartz";
+
+            Console.WriteLine("-----");
             #endregion
 
         }
