@@ -41,7 +41,6 @@ namespace Section03 {
                 Console.WriteLine("{0}={1}", item.Key, item.Value);
             }
             Console.WriteLine();
-            abbrs.Print3Text();
 
             Console.WriteLine(abbrs.Count);
             if (abbrs.Remove("IOC")) {
