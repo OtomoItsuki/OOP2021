@@ -25,11 +25,11 @@ namespace StopWacth {
             tm.Start();
 
             tm.Tick += Tm_Tick;
-
+            
         }
 
         private void Tm_Tick(object sender, EventArgs e) {
-            lbTimerDisp.Text = tm.ToString();
+            lbTimerDisp.Text = sw.Elapsed.ToString(@"hh\:mm\:ss\:ff");
         }
 
         private void btStop_Click(object sender, EventArgs e) {
@@ -39,7 +39,13 @@ namespace StopWacth {
 
         private void btReset_Click(object sender, EventArgs e) {
             sw.Reset();
-            tm.Stop();
+            lbTimerDisp.Text = sw.Elapsed.ToString(@"hh\:mm\:ss\:ff");
+            lbLap.Items.Clear();
+
+        }
+
+        private void btLap_Click(object sender, EventArgs e) {
+            lbLap.Items.Insert(0,lbTimerDisp.Text);
         }
     }
 }
