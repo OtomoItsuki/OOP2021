@@ -74,6 +74,7 @@ namespace CarReportSystem {
             // 
             this.dgvRegistData.AllowUserToAddRows = false;
             this.dgvRegistData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRegistData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvRegistData.Location = new System.Drawing.Point(69, 279);
             this.dgvRegistData.MultiSelect = false;
             this.dgvRegistData.Name = "dgvRegistData";
@@ -337,6 +338,7 @@ namespace CarReportSystem {
             this.btOpen.TabIndex = 6;
             this.btOpen.Text = "開く";
             this.btOpen.UseVisualStyleBackColor = true;
+            this.btOpen.Click += new System.EventHandler(this.btOpen_Click);
             // 
             // btSave
             // 
@@ -347,6 +349,7 @@ namespace CarReportSystem {
             this.btSave.TabIndex = 6;
             this.btSave.Text = "保存";
             this.btSave.UseVisualStyleBackColor = true;
+            this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
             // btExit
             // 
@@ -396,7 +399,7 @@ namespace CarReportSystem {
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.Name = "fmMain";
-            this.Text = "4";
+            this.Text = "試乗レポート管理システム";
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistData)).EndInit();
             this.gbMaker.ResumeLayout(false);
             this.gbMaker.PerformLayout();
