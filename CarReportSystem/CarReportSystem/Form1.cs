@@ -58,7 +58,7 @@ namespace CarReportSystem {
             }
         }
 
-
+        //データを追加するボタン
         private void btDataAdd_Click(object sender, EventArgs e) {
             if (cbAuthor.Text == "" || cbCarName.Text == "") {
                 MessageBox.Show("入力してください");
@@ -102,7 +102,7 @@ namespace CarReportSystem {
             tbReport.Text = selectedCar.Report;
             pbPicture.Image = selectedCar.Picture;
         }
-        //
+        //メーカを選ぶボタン
         private void setMakerRadioButton(CarReport.MakerGroup mg) {
             switch (mg) {
                 case CarReport.MakerGroup.トヨタ:
@@ -151,28 +151,59 @@ namespace CarReportSystem {
             dgvRegistData.Refresh();
             
         }
-
+        //保存ボタン
         private void btSave_Click(object sender, EventArgs e) {
-            if (sfdFileSave.ShowDialog() == DialogResult.OK) {
-                var bf = new BinaryFormatter();
-                //バイナリ形式でシリアル化
-                using (FileStream fs = File.Open(sfdFileSave.FileName, FileMode.Create)) {
-                    bf.Serialize(fs, listCarReport);
+            try {
+                if (sfdFileSave.ShowDialog() == DialogResult.OK) {
+                    var bf = new BinaryFormatter();
+                    //バイナリ形式でシリアル化
+                    using (FileStream fs = File.Open(sfdFileSave.FileName, FileMode.Create)) {
+                        bf.Serialize(fs, listCarReport);
+                    }
                 }
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message + "\r\n\r\n保存ができませんでした",
+                    "エラー発生", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ;
+
+            }
+        }
+        //開くボタン
+        private void btOpen_Click(object sender, EventArgs e) {
+            if (ofdFileOpen.ShowDialog() == DialogResult.OK) {
+                try {
+                    var bf = new BinaryFormatter();
+                    //バイナリ形式で逆シリアル化
+                    using (FileStream fs = File.Open(ofdFileOpen.FileName, FileMode.Open, FileAccess.Read)) {
+                        //逆シリアル化して読み込む
+
+                        listCarReport = (BindingList<CarReport>)bf.Deserialize(fs);
+
+                        dgvRegistData.DataSource = null;
+                        dgvRegistData.DataSource = listCarReport;
+                    }
+                }
+                catch (Exception ex) {
+                    MessageBox.Show(ex.Message + "\r\n\r\n正しいファイルを選んでください", "エラー発生", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                //読み込んだデータを各コンボボックスに登録する
+
+                foreach (var item in listCarReport) {
+
+                    setCbAuthor(item.Author);
+                    setCbCarName(item.CarName);
+                }
+                //for (int i = 0; i < dgvRegistData.RowCount; i++) {
+                //    setCbAuthor(dgvRegistData.Rows[i].Cells[1].Value.ToString());
+                //    setCbCarName(dgvRegistData.Rows[i].Cells[3].Value.ToString());
+                //}
+
             }
         }
 
-        private void btOpen_Click(object sender, EventArgs e) {
-            if (ofdFileOpen.ShowDialog() == DialogResult.OK) {
-                var bf = new BinaryFormatter();
-                //バイナリ形式で逆シリアル化
-                using (FileStream fs = File.Open(ofdFileOpen.FileName, FileMode.Open,FileAccess.Read)) {
-                    //逆シリアル化して読み込む
-                    listCarReport = (BindingList<CarReport>)bf.Deserialize(fs);
-                    dgvRegistData.DataSource = null;
-                    dgvRegistData.DataSource = listCarReport;
-                }
-            }
+        private void fmMain_Load(object sender, EventArgs e) {
+            dgvRegistData.Columns[5].Visible = false;
         }
     }
 }
