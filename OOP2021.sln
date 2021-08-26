@@ -94,6 +94,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise3", "Chapter09\Exer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample0823", "Sample0823\Sample0823.csproj", "{225B2345-4A46-4695-A085-7BF9B7E10E34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Section01", "Chapter11\Section01\Section01.csproj", "{8FF2AB50-E8C5-44C0-A7FE-5A26E478C925}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter11", "Chapter11", "{FBF90E54-5295-446D-82FA-D1E0A2AD1686}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Downloads\novelists.xml = ..\..\..\..\Downloads\novelists.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -212,6 +219,10 @@ Global
 		{225B2345-4A46-4695-A085-7BF9B7E10E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{225B2345-4A46-4695-A085-7BF9B7E10E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{225B2345-4A46-4695-A085-7BF9B7E10E34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FF2AB50-E8C5-44C0-A7FE-5A26E478C925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FF2AB50-E8C5-44C0-A7FE-5A26E478C925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FF2AB50-E8C5-44C0-A7FE-5A26E478C925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FF2AB50-E8C5-44C0-A7FE-5A26E478C925}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -250,6 +261,7 @@ Global
 		{D34A7C48-FEC6-455A-A2F6-137D8FF2F659} = {48721781-434F-4614-8948-BDA200FFDB8B}
 		{D73CACE7-E679-41FA-AC7D-C2C23710E533} = {48721781-434F-4614-8948-BDA200FFDB8B}
 		{158F4107-6D09-4A10-ACAE-442AE77AAF7C} = {48721781-434F-4614-8948-BDA200FFDB8B}
+		{8FF2AB50-E8C5-44C0-A7FE-5A26E478C925} = {FBF90E54-5295-446D-82FA-D1E0A2AD1686}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {69648D40-F2A1-4B29-B723-C811536E7D6A}
