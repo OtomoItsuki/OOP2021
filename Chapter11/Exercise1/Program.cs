@@ -10,13 +10,13 @@ namespace Exercise1 {
         static void Main(string[] args) {
             var file = "Sample.xml";
             Exercise1_1(file);
-            Console.WriteLine("------");
+            Console.WriteLine("-11.1.1-----");
             Exercise1_2(file);
-            Console.WriteLine("------");
+            Console.WriteLine("-11.1.2-----");
             Exercise1_3(file);
-            Console.WriteLine("------");
+            Console.WriteLine("-11.1.3-----");
         }
-
+        //11.1.1
         private static void Exercise1_1(string file) {
             var xdoc = XDocument.Load(file);
             var xelements = xdoc.Root.Elements();
@@ -27,6 +27,7 @@ namespace Exercise1 {
             }
         }
 
+        //11.1.2
         private static void Exercise1_2(string file) {
             var xdoc = XDocument.Load(file);
             var ballsports = xdoc.Root.Elements().Select(x => new {
@@ -40,6 +41,7 @@ namespace Exercise1 {
 
         }
 
+        //11.1.3
         private static void Exercise1_3(string file) {
             var xdoc = XDocument.Load(file);
             var ballsport = xdoc.Root.Elements().Select(x => new {
