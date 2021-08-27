@@ -9,12 +9,16 @@ namespace Exercise1 {
     class Program {
         static void Main(string[] args) {
             var file = "Sample.xml";
-            Exercise1_1(file);
             Console.WriteLine("-11.1.1-----");
-            Exercise1_2(file);
+            Exercise1_1(file);
+
             Console.WriteLine("-11.1.2-----");
-            Exercise1_3(file);
+            Exercise1_2(file);
+
             Console.WriteLine("-11.1.3-----");
+            Exercise1_3(file);
+
+            Console.WriteLine("------------");
         }
         //11.1.1
         private static void Exercise1_1(string file) {
@@ -36,7 +40,7 @@ namespace Exercise1 {
             
             }).OrderByDescending(x => x.FirstPlayed);
             foreach (var ballsport in ballsports) {
-                Console.WriteLine("{0}：{1}", ballsport.FirstPlayed, ballsport.KanjiName);
+                Console.WriteLine("最初にプレーされた年：{0}：漢字の競技名：{1}", ballsport.FirstPlayed, ballsport.KanjiName);
             }
 
         }
@@ -50,7 +54,7 @@ namespace Exercise1 {
 
             }).OrderByDescending(x => x.TeamMembers).First();
             ;
-            Console.WriteLine("メンバー数：{0}　{1}", ballsport.TeamMembers, ballsport.Name);
+            Console.WriteLine("メンバー数：{0}　競技名：{1}", ballsport.TeamMembers, ballsport.Name);
             
 
         }
