@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Section01 {
+namespace Section04 {
     class Program {
         static void Main(string[] args) {
             var novelists = ReadNovelists();

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Section01 {
+namespace Section04 {
     class Novelist {
         public string Name { get; set; }
         public string KanaName { get; set; }

@@ -10,11 +10,18 @@ namespace Exercise2 {
         static void Main(string[] args) {
             var xdoc = XDocument.Load("11_2.xml");
 
-            var dkanji = xdoc.Root.Elements();
+            var pairs = xdoc.Root.Elements().Select(x => new {
+                Key = x.Name.LocalName,
+                Value = x.Value
+            });
 
-            var word = new XElement(xdoc.Root.Name);
+            var query = pairs.Select(x => new XElement("word",
+                                            new XAttribute("kanji", x.Key),
+                                            new XAttribute("yomi", x.Value)));
 
-            var root = new XElement(xdoc.Root.Name, word);
+            var root = new XElement("difficultkanji", pairs);
+
+            root.Save("difficultkanji.xml");
 
             Console.WriteLine();
         }
