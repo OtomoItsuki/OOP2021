@@ -22,26 +22,34 @@ namespace Section04 {
                             "4:水戸\r\n" +
                             "5:その他(直接入力)");
             int code = 0;
-            switch (int.Parse(Console.ReadLine())) {
-                case 1:
-                    code = 4210;
-                    break;
-                case 2:
-                    code = 4220;
-                    break;
-                case 3:
-                    code = 4110;
-                    break;
-                case 4:
-                    code = 4010;
-                    break;
-                case 5:
-                    Console.WriteLine("表示したい地域のコードを入力してください");
-                    code = int.Parse(Console.ReadLine());
-                    break;
+            try {
 
-                default:
-                    break;
+                switch (int.Parse(Console.ReadLine())) {
+                    case 1:
+                        code = 4210;
+                        break;
+                    case 2:
+                        code = 4220;
+                        break;
+                    case 3:
+                        code = 4110;
+                        break;
+                    case 4:
+                        code = 4010;
+                        break;
+                    case 5:
+                        Console.WriteLine("表示したい地域のコードを入力してください");
+                        code = int.Parse(Console.ReadLine());
+                        break;
+
+                    default:
+                        Console.WriteLine("1 ~ 5の半角数字を入力してください");
+                        break;
+                }
+            }
+            catch (Exception) {
+                Console.WriteLine("1 ~ 5の半角数字を入力してください");
+                return;
             }
             Console.WriteLine("***********************");
 
