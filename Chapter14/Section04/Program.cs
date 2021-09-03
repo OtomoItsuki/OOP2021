@@ -14,14 +14,45 @@ namespace Section04 {
             new Program();
         }
         public Program() {
-            //DownloadString
-            //DownloadFileAsync
-            //OpenReadSample();
-            var results = GetWeatherReportFromYahoo(4210);
+            Console.WriteLine("yahoo!週間天気予報");
+            Console.WriteLine("地域コードを入力\r\n" +
+                            "1:前橋\r\n" +
+                            "2:みなかみ\r\n" +
+                            "3:宇都宮\r\n" +
+                            "4:水戸\r\n" +
+                            "5:その他(直接入力)");
+            int code = 0;
+            switch (int.Parse(Console.ReadLine())) {
+                case 1:
+                    code = 4210;
+                    break;
+                case 2:
+                    code = 4220;
+                    break;
+                case 3:
+                    code = 4110;
+                    break;
+                case 4:
+                    code = 4010;
+                    break;
+                case 5:
+                    Console.WriteLine("表示したい地域のコードを入力してください");
+                    code = int.Parse(Console.ReadLine());
+                    break;
+
+                default:
+                    break;
+            }
+            Console.WriteLine("***********************");
+
+
+            var results = GetWeatherReportFromYahoo(code);
             foreach (var s in results) {
                 Console.WriteLine(s);
             }
             Console.ReadLine();
+            Console.WriteLine("***********************");
+
         }
         public void DownloadString() {
             var wc = new WebClient();
