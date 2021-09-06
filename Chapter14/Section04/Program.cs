@@ -10,50 +10,37 @@ using System.Xml.Linq;
 
 namespace Section04 {
     class Program {
+        Dictionary<string,int> AreaDic = new Dictionary<string, int>() {
+            {"前橋",4210 },
+            {"みなかみ",4220 },
+            {"宇都宮",4110 },
+            {"水戸",4010 },
+        };
+
+        //コードを保存する
+        List<int> cityCode = new List<int>();
         static void Main(string[] args) {
             new Program();
         }
         public Program() {
             Console.WriteLine("yahoo!週間天気予報");
-            Console.WriteLine("地域コードを入力\r\n" +
-                            "1:前橋\r\n" +
-                            "2:みなかみ\r\n" +
-                            "3:宇都宮\r\n" +
-                            "4:水戸\r\n" +
-                            "5:その他(直接入力)");
-            int code = 0;
-            try {
-
-                switch (int.Parse(Console.ReadLine())) {
-                    case 1:
-                        code = 4210;
-                        break;
-                    case 2:
-                        code = 4220;
-                        break;
-                    case 3:
-                        code = 4110;
-                        break;
-                    case 4:
-                        code = 4010;
-                        break;
-                    case 5:
-                        Console.WriteLine("表示したい地域のコードを入力してください");
-                        code = int.Parse(Console.ReadLine());
-                        break;
-
-                    default:
-                        Console.WriteLine("1 ~ 5の半角数字を入力してください");
-                        break;
-                }
+            Console.WriteLine("地域コードを入力");
+            int num = 0;
+            foreach (KeyValuePair<string,int> pair in AreaDic) {
+                Console.WriteLine("{0},{1}", ++num, pair.Key);
+                cityCode.Add(pair.Value);
             }
-            catch (Exception) {
-                Console.WriteLine("1 ~ 5の半角数字を入力してください");
-                return;
-            }
+            Console.WriteLine("9:その他(直接入力)");
+            int.TryParse(Console.ReadLine(), out int selectArea);
             Console.WriteLine("***********************");
-
-
+            int code;
+            if (selectArea != 9) {
+                code = cityCode[selectArea - 1];
+            }
+            else {
+                Console.WriteLine("コードを入力:");
+                int.TryParse(Console.ReadLine(), out code);
+            }
             var results = GetWeatherReportFromYahoo(code);
             foreach (var s in results) {
                 Console.WriteLine(s);
