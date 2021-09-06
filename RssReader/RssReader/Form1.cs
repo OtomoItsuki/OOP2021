@@ -13,6 +13,8 @@ using System.Xml.Linq;
 
 namespace RssReader {
     public partial class Form1 : Form {
+        XDocument xdoc;
+
         public Form1() {
             InitializeComponent();
         }
@@ -22,15 +24,22 @@ namespace RssReader {
         }
         private void SetRssTitle(string uri) {
             using (var wc = new WebClient()) {
-                var url = new Uri(uri);
-                var stream = wc.OpenRead(url);
+                var stream = wc.OpenRead(uri);
 
-                XDocument xdoc = XDocument.Load(stream);
+                xdoc = XDocument.Load(stream);
                 var nodes = xdoc.Root.Descendants("title");
                 foreach (var node in nodes) {
                     lbTitles.Items.Add(node.Value);
                 }
+                
             }
+        }
+
+        private void lbTitles_SelectedIndexChanged(object sender, EventArgs e) {
+
+
+            var uri2 = xdoc.Root.Elements().Where(x => x.Element("title") == lbTitles.Items[lbTitles.SelectedIndex]);
+            
         }
     }
 }

@@ -59,14 +59,17 @@ namespace RssReader {
             this.lbTitles.Name = "lbTitles";
             this.lbTitles.Size = new System.Drawing.Size(246, 463);
             this.lbTitles.TabIndex = 2;
+            this.lbTitles.SelectedIndexChanged += new System.EventHandler(this.lbTitles_SelectedIndexChanged);
             // 
             // wbBrowser
             // 
             this.wbBrowser.Location = new System.Drawing.Point(264, 77);
             this.wbBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbBrowser.Name = "wbBrowser";
+            this.wbBrowser.ScriptErrorsSuppressed = true;
             this.wbBrowser.Size = new System.Drawing.Size(674, 463);
             this.wbBrowser.TabIndex = 3;
+            this.wbBrowser.Url = new System.Uri("https://news.yahoo.co.jp/rss/topics/it.xml", System.UriKind.Absolute);
             // 
             // btRead
             // 
