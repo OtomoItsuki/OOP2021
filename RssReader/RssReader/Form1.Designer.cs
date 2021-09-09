@@ -97,7 +97,7 @@ namespace RssReader {
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(210, 64);
+            this.label2.Location = new System.Drawing.Point(210, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 21);
             this.label2.TabIndex = 6;
@@ -107,7 +107,7 @@ namespace RssReader {
             // 
             this.labelUpDay.AutoSize = true;
             this.labelUpDay.Font = new System.Drawing.Font("MV Boli", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUpDay.Location = new System.Drawing.Point(283, 67);
+            this.labelUpDay.Location = new System.Drawing.Point(283, 71);
             this.labelUpDay.Name = "labelUpDay";
             this.labelUpDay.Size = new System.Drawing.Size(14, 17);
             this.labelUpDay.TabIndex = 7;
@@ -116,7 +116,7 @@ namespace RssReader {
             // btView
             // 
             this.btView.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btView.Location = new System.Drawing.Point(603, 254);
+            this.btView.Location = new System.Drawing.Point(623, 254);
             this.btView.Name = "btView";
             this.btView.Size = new System.Drawing.Size(125, 27);
             this.btView.TabIndex = 8;

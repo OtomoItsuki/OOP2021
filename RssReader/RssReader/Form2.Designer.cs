@@ -34,18 +34,18 @@ namespace RssReader {
             this.wbBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbBrowser.Name = "wbBrowser";
             this.wbBrowser.ScriptErrorsSuppressed = true;
-            this.wbBrowser.Size = new System.Drawing.Size(976, 565);
+            this.wbBrowser.Size = new System.Drawing.Size(847, 593);
             this.wbBrowser.TabIndex = 0;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(976, 565);
+            this.ClientSize = new System.Drawing.Size(847, 593);
             this.Controls.Add(this.wbBrowser);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form2";
+            this.Text = "32014";
             this.ResumeLayout(false);
 
         }
