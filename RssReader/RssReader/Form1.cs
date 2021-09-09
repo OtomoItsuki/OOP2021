@@ -14,6 +14,7 @@ using System.Xml.Linq;
 namespace RssReader {
     public partial class Form1 : Form {
         List<string> links = new List<string>();
+        List<string> description = new List<string>();
 
         public Form1() {
             InitializeComponent();
@@ -29,6 +30,7 @@ namespace RssReader {
                 XDocument xdoc = XDocument.Load(stream);
                 var nodes = xdoc.Root.Descendants("item").Descendants("title");
                 links = xdoc.Root.Descendants("item").Descendants("link").Select(x => x.Value).ToList();
+                description = xdoc.Root.Descendants("item").Descendants("description").Select(x => x.Value).ToList();
                 foreach (var node in nodes) {
                     lbTitles.Items.Add(node.Value);
                 }
@@ -37,9 +39,18 @@ namespace RssReader {
         }
 
         private void lbTitles_SelectedIndexChanged(object sender, EventArgs e) {
-            var targetString = lbTitles.Items[lbTitles.SelectedIndex].ToString();
+            try {
 
+                var targetString = lbTitles.Items[lbTitles.SelectedIndex].ToString();
+
+            }
+            catch (Exception) {
+                
+                return;
+            }
+            lbDesc.Text = description[lbTitles.SelectedIndex];
             wbBrowser.Url = new Uri(links[lbTitles.SelectedIndex]);
+
             
         }
     }
