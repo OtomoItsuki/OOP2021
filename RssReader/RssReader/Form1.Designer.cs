@@ -31,6 +31,7 @@ namespace RssReader {
             this.labelDesc = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.labelUpDay = new System.Windows.Forms.Label();
+            this.btView = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -112,11 +113,24 @@ namespace RssReader {
             this.labelUpDay.TabIndex = 7;
             this.labelUpDay.Text = " ";
             // 
+            // btView
+            // 
+            this.btView.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btView.Location = new System.Drawing.Point(603, 254);
+            this.btView.Name = "btView";
+            this.btView.Size = new System.Drawing.Size(125, 27);
+            this.btView.TabIndex = 8;
+            this.btView.Text = "この記事を表示";
+            this.btView.UseVisualStyleBackColor = true;
+            this.btView.Visible = false;
+            this.btView.Click += new System.EventHandler(this.btView_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(760, 454);
+            this.Controls.Add(this.btView);
             this.Controls.Add(this.labelUpDay);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.labelDesc);
@@ -125,7 +139,7 @@ namespace RssReader {
             this.Controls.Add(this.tbUrl);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("MV Boli", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "32014";
@@ -143,6 +157,7 @@ namespace RssReader {
         private System.Windows.Forms.Label labelDesc;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelUpDay;
+        private System.Windows.Forms.Button btView;
     }
 }
 

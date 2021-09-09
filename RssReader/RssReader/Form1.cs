@@ -45,17 +45,24 @@ namespace RssReader {
         private void lbTitles_SelectedIndexChanged(object sender, EventArgs e) {
             try {
 
-                var targetString = lbTitles.Items[lbTitles.SelectedIndex].ToString();
+                labelUpDay.Text = upDays[lbTitles.SelectedIndex];
+                labelDesc.Text = descriptions[lbTitles.SelectedIndex];
 
             }
             catch (Exception) {
                 
                 return;
             }
-            labelUpDay.Text = upDays[lbTitles.SelectedIndex];
-            labelDesc.Text = descriptions[lbTitles.SelectedIndex];
+            btView.Visible = true;
+            var targetString = lbTitles.Items[lbTitles.SelectedIndex].ToString();
 
             
+        }
+
+        private void btView_Click(object sender, EventArgs e) {
+            Form2 form2 = new Form2();
+            form2.wbBrowser.Url = new Uri(links[lbTitles.SelectedIndex]);
+            form2.ShowDialog();
         }
     }
 }
