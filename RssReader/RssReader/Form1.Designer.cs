@@ -27,9 +27,10 @@ namespace RssReader {
             this.label1 = new System.Windows.Forms.Label();
             this.tbUrl = new System.Windows.Forms.TextBox();
             this.lbTitles = new System.Windows.Forms.ListBox();
-            this.wbBrowser = new System.Windows.Forms.WebBrowser();
             this.btRead = new System.Windows.Forms.Button();
-            this.lbDesc = new System.Windows.Forms.Label();
+            this.labelDesc = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.labelUpDay = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -66,19 +67,6 @@ namespace RssReader {
             this.lbTitles.TabIndex = 2;
             this.lbTitles.SelectedIndexChanged += new System.EventHandler(this.lbTitles_SelectedIndexChanged);
             // 
-            // wbBrowser
-            // 
-            this.wbBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.wbBrowser.Location = new System.Drawing.Point(208, 114);
-            this.wbBrowser.MinimumSize = new System.Drawing.Size(16, 16);
-            this.wbBrowser.Name = "wbBrowser";
-            this.wbBrowser.ScriptErrorsSuppressed = true;
-            this.wbBrowser.Size = new System.Drawing.Size(542, 326);
-            this.wbBrowser.TabIndex = 3;
-            this.wbBrowser.Url = new System.Uri("https://news.yahoo.co.jp/rss/topics/it.xml", System.UriKind.Absolute);
-            // 
             // btRead
             // 
             this.btRead.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -91,25 +79,48 @@ namespace RssReader {
             this.btRead.UseVisualStyleBackColor = true;
             this.btRead.Click += new System.EventHandler(this.btRead_Click);
             // 
-            // lbDesc
+            // labelDesc
             // 
-            this.lbDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.labelDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbDesc.Font = new System.Drawing.Font("MV Boli", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDesc.Location = new System.Drawing.Point(207, 46);
-            this.lbDesc.Name = "lbDesc";
-            this.lbDesc.Size = new System.Drawing.Size(542, 65);
-            this.lbDesc.TabIndex = 5;
-            this.lbDesc.Text = " ";
+            this.labelDesc.Font = new System.Drawing.Font("MV Boli", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDesc.Location = new System.Drawing.Point(211, 104);
+            this.labelDesc.Name = "labelDesc";
+            this.labelDesc.Size = new System.Drawing.Size(539, 147);
+            this.labelDesc.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(210, 64);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 21);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "更新日:";
+            // 
+            // labelUpDay
+            // 
+            this.labelUpDay.AutoSize = true;
+            this.labelUpDay.Font = new System.Drawing.Font("MV Boli", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUpDay.Location = new System.Drawing.Point(283, 67);
+            this.labelUpDay.Name = "labelUpDay";
+            this.labelUpDay.Size = new System.Drawing.Size(14, 17);
+            this.labelUpDay.TabIndex = 7;
+            this.labelUpDay.Text = " ";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(760, 454);
-            this.Controls.Add(this.lbDesc);
+            this.Controls.Add(this.labelUpDay);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.labelDesc);
             this.Controls.Add(this.btRead);
-            this.Controls.Add(this.wbBrowser);
             this.Controls.Add(this.lbTitles);
             this.Controls.Add(this.tbUrl);
             this.Controls.Add(this.label1);
@@ -128,9 +139,10 @@ namespace RssReader {
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbUrl;
         private System.Windows.Forms.ListBox lbTitles;
-        private System.Windows.Forms.WebBrowser wbBrowser;
         private System.Windows.Forms.Button btRead;
-        private System.Windows.Forms.Label lbDesc;
+        private System.Windows.Forms.Label labelDesc;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelUpDay;
     }
 }
 

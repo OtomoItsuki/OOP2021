@@ -14,7 +14,8 @@ using System.Xml.Linq;
 namespace RssReader {
     public partial class Form1 : Form {
         List<string> links = new List<string>();
-        List<string> description = new List<string>();
+        List<string> descriptions = new List<string>();
+        List<string> upDays = new List<string>();
 
         public Form1() {
             InitializeComponent();
@@ -28,16 +29,19 @@ namespace RssReader {
                 var stream = wc.OpenRead(uri);
 
                 XDocument xdoc = XDocument.Load(stream);
-                var nodes = xdoc.Root.Descendants("item").Descendants("title");
-                links = xdoc.Root.Descendants("item").Descendants("link").Select(x => x.Value).ToList();
-                description = xdoc.Root.Descendants("item").Descendants("description").Select(x => x.Value).ToList();
+                var xitems = xdoc.Root.Descendants("item");
+                var nodes = xitems.Descendants("title");
+
+                links = xitems.Descendants("link").Select(x => x.Value).ToList();
+                upDays = xitems.Descendants("pubDate").Select(x => x.Value).ToList();
+                descriptions = xitems.Descendants("description").Select(x => x.Value).ToList();
+
                 foreach (var node in nodes) {
                     lbTitles.Items.Add(node.Value);
                 }
                 
             }
         }
-
         private void lbTitles_SelectedIndexChanged(object sender, EventArgs e) {
             try {
 
@@ -48,8 +52,8 @@ namespace RssReader {
                 
                 return;
             }
-            lbDesc.Text = description[lbTitles.SelectedIndex];
-            wbBrowser.Url = new Uri(links[lbTitles.SelectedIndex]);
+            labelUpDay.Text = upDays[lbTitles.SelectedIndex];
+            labelDesc.Text = descriptions[lbTitles.SelectedIndex];
 
             
         }
