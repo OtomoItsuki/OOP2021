@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace RssReader {
     public partial class Form2 : Form {
+        
         public Form2() {
             InitializeComponent();
         }
@@ -23,13 +24,16 @@ namespace RssReader {
 
         }
 
-        private void wbBrowser_CanGoBackChanged(object
-         sender, EventArgs e) {
+        private void wbBrowser_CanGoBackChanged(object sender, EventArgs e) {
             btBack.Enabled = wbBrowser.CanGoBack;
         }
-        private void wbBrowser_CanGoForwardChanged(object
-        sender, EventArgs e) {
+        private void wbBrowser_CanGoForwardChanged(object sender, EventArgs e) {
             btForward.Enabled = wbBrowser.CanGoForward;
+        }
+
+        private void btBack_MouseHover(object sender, EventArgs e) {
+            hoverLabel.Text = "aiu";
+            hoverLabel.Location = Cursor.Position;
         }
     }
 }

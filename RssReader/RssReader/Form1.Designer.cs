@@ -30,7 +30,7 @@ namespace RssReader {
             this.btRead = new System.Windows.Forms.Button();
             this.labelDesc = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.labelUpDay = new System.Windows.Forms.Label();
+            this.labelPubDate = new System.Windows.Forms.Label();
             this.btView = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -103,15 +103,15 @@ namespace RssReader {
             this.label2.TabIndex = 6;
             this.label2.Text = "更新日:";
             // 
-            // labelUpDay
+            // labelPubDate
             // 
-            this.labelUpDay.AutoSize = true;
-            this.labelUpDay.Font = new System.Drawing.Font("MV Boli", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUpDay.Location = new System.Drawing.Point(283, 71);
-            this.labelUpDay.Name = "labelUpDay";
-            this.labelUpDay.Size = new System.Drawing.Size(14, 17);
-            this.labelUpDay.TabIndex = 7;
-            this.labelUpDay.Text = " ";
+            this.labelPubDate.AutoSize = true;
+            this.labelPubDate.Font = new System.Drawing.Font("MV Boli", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPubDate.Location = new System.Drawing.Point(283, 71);
+            this.labelPubDate.Name = "labelPubDate";
+            this.labelPubDate.Size = new System.Drawing.Size(14, 17);
+            this.labelPubDate.TabIndex = 7;
+            this.labelPubDate.Text = " ";
             // 
             // btView
             // 
@@ -131,7 +131,7 @@ namespace RssReader {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(760, 454);
             this.Controls.Add(this.btView);
-            this.Controls.Add(this.labelUpDay);
+            this.Controls.Add(this.labelPubDate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.labelDesc);
             this.Controls.Add(this.btRead);
@@ -156,7 +156,7 @@ namespace RssReader {
         private System.Windows.Forms.Button btRead;
         private System.Windows.Forms.Label labelDesc;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label labelUpDay;
+        private System.Windows.Forms.Label labelPubDate;
         private System.Windows.Forms.Button btView;
     }
 }

@@ -13,9 +13,7 @@ using System.Xml.Linq;
 
 namespace RssReader {
     public partial class Form1 : Form {
-        List<string> links = new List<string>();
-        List<string> descriptions = new List<string>();
-        List<string> upDays = new List<string>();
+        IEnumerable<ItemData> items = null;
 
         public Form1() {
             InitializeComponent();
@@ -29,24 +27,26 @@ namespace RssReader {
                 var stream = wc.OpenRead(uri);
 
                 XDocument xdoc = XDocument.Load(stream);
-                var xitems = xdoc.Root.Descendants("item");
-                var nodes = xitems.Descendants("title");
+                items = xdoc.Root.Descendants("item").Select(x => new ItemData {
+                    Title = (string)x.Element("title"),
+                    Link = (string)x.Element("link"),
+                    PubDate = (DateTime)x.Element("pubDate"),
+                    Description = (string)x.Element("descrption")
 
-                links = xitems.Descendants("link").Select(x => x.Value).ToList();
-                upDays = xitems.Descendants("pubDate").Select(x => x.Value).ToList();
-                descriptions = xitems.Descendants("description").Select(x => x.Value).ToList();
-
-                foreach (var node in nodes) {
-                    lbTitles.Items.Add(node.Value);
+                });
+                
+        
+                foreach (var item in items) {
+                    lbTitles.Items.Add(item.Title);
                 }
                 
             }
         }
         private void lbTitles_SelectedIndexChanged(object sender, EventArgs e) {
             try {
-
-                labelUpDay.Text = upDays[lbTitles.SelectedIndex];
-                labelDesc.Text = descriptions[lbTitles.SelectedIndex];
+                
+                labelPubDate.Text = (items.ToArray())[lbTitles.SelectedIndex].PubDate.ToString();
+                labelDesc.Text = (items.ToArray())[lbTitles.SelectedIndex].Description;
 
             }
             catch (Exception) {
@@ -54,14 +54,13 @@ namespace RssReader {
                 return;
             }
             btView.Visible = true;
-            var targetString = lbTitles.Items[lbTitles.SelectedIndex].ToString();
 
             
         }
 
         private void btView_Click(object sender, EventArgs e) {
             Form2 form2 = new Form2();
-            form2.wbBrowser.Url = new Uri(links[lbTitles.SelectedIndex]);
+            form2.wbBrowser.Url = new Uri((items.ToArray())[lbTitles.SelectedIndex].Link);
             form2.ShowDialog();
         }
     }
