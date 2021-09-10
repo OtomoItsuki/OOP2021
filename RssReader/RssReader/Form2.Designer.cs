@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace RssReader {
     partial class Form2 {
         /// <summary>
@@ -25,23 +27,53 @@ namespace RssReader {
         /// </summary>
         private void InitializeComponent() {
             this.wbBrowser = new System.Windows.Forms.WebBrowser();
+            this.btBack = new System.Windows.Forms.Button();
+            this.btForward = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // wbBrowser
             // 
-            this.wbBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wbBrowser.Location = new System.Drawing.Point(0, 0);
+            this.wbBrowser.Location = new System.Drawing.Point(0, 44);
             this.wbBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbBrowser.Name = "wbBrowser";
             this.wbBrowser.ScriptErrorsSuppressed = true;
-            this.wbBrowser.Size = new System.Drawing.Size(847, 593);
+            this.wbBrowser.Size = new System.Drawing.Size(848, 549);
             this.wbBrowser.TabIndex = 0;
+            this.wbBrowser.CanGoBackChanged += new System.EventHandler(this.wbBrowser_CanGoBackChanged);
+            this.wbBrowser.CanGoForwardChanged += new System.EventHandler(this.wbBrowser_CanGoForwardChanged);
+            // 
+            // btBack
+            // 
+            this.btBack.Enabled = false;
+            this.btBack.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btBack.Location = new System.Drawing.Point(8, 6);
+            this.btBack.Name = "btBack";
+            this.btBack.Size = new System.Drawing.Size(48, 32);
+            this.btBack.TabIndex = 1;
+            this.btBack.Text = "←";
+            this.btBack.UseVisualStyleBackColor = true;
+            this.btBack.Click += new System.EventHandler(this.btBack_Click);
+            // 
+            // btForward
+            // 
+            this.btForward.Enabled = false;
+            this.btForward.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btForward.Location = new System.Drawing.Point(62, 6);
+            this.btForward.Name = "btForward";
+            this.btForward.Size = new System.Drawing.Size(48, 32);
+            this.btForward.TabIndex = 2;
+            this.btForward.Text = "→";
+            this.btForward.UseVisualStyleBackColor = true;
+            this.btForward.Click += new System.EventHandler(this.btForward_Click);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(847, 593);
+            this.Controls.Add(this.btForward);
+            this.Controls.Add(this.btBack);
             this.Controls.Add(this.wbBrowser);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -50,8 +82,11 @@ namespace RssReader {
 
         }
 
+
         #endregion
 
         public System.Windows.Forms.WebBrowser wbBrowser;
+        private System.Windows.Forms.Button btBack;
+        private System.Windows.Forms.Button btForward;
     }
 }
