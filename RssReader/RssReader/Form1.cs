@@ -14,7 +14,7 @@ using System.Xml.Linq;
 namespace RssReader {
     public partial class Form1 : Form {
         IEnumerable<ItemData> items = null;
-
+        Form2 form2 = null;
         public Form1() {
             InitializeComponent();
         }
@@ -59,7 +59,11 @@ namespace RssReader {
         }
 
         private void btView_Click(object sender, EventArgs e) {
-            Form2 form2 = new Form2();
+            if (form2 == null) {
+
+                form2 = new Form2();
+            }
+
             form2.wbBrowser.Url = new Uri((items.ToArray())[lbTitles.SelectedIndex].Link);
             form2.ShowDialog();
         }
