@@ -31,7 +31,7 @@ namespace RssReader {
                     Title = (string)x.Element("title"),
                     Link = (string)x.Element("link"),
                     PubDate = (DateTime)x.Element("pubDate"),
-                    Description = (string)x.Element("descrption")
+                    Description = (string)x.Element("description")
 
                 });
                 
