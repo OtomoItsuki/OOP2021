@@ -10,9 +10,10 @@ using System.Windows.Forms;
 
 namespace RssReader {
     public partial class Form2 : Form {
-        
-        public Form2() {
+        Uri url;
+        public Form2(string url) {
             InitializeComponent();
+            this.url = new Uri(url);
         }
 
         private void btBack_Click(object sender, EventArgs e) {
@@ -33,7 +34,11 @@ namespace RssReader {
 
         private void btBack_MouseHover(object sender, EventArgs e) {
             hoverLabel.Text = "aiu";
-            hoverLabel.Location = Cursor.Position;
+        }
+
+        private void Form2_Load(object sender, EventArgs e) {
+
+            wbBrowser.Url = url;
         }
     }
 }
