@@ -61,9 +61,10 @@ namespace RssReader {
         private void btView_Click(object sender, EventArgs e) {
             if (form2 == null) {
 
-                form2 = new Form2((items.ToArray())[lbTitles.SelectedIndex].Link);
+                form2 = new Form2();
             }
 
+            form2.wbBrowser.Url = new Uri((items.ToArray())[lbTitles.SelectedIndex].Link);
             form2.ShowDialog();
         }
     }
