@@ -29,7 +29,6 @@ namespace RssReader {
             this.wbBrowser = new System.Windows.Forms.WebBrowser();
             this.btBack = new System.Windows.Forms.Button();
             this.btForward = new System.Windows.Forms.Button();
-            this.hoverLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // wbBrowser
@@ -57,7 +56,6 @@ namespace RssReader {
             this.btBack.Text = "←";
             this.btBack.UseVisualStyleBackColor = true;
             this.btBack.Click += new System.EventHandler(this.btBack_Click);
-            this.btBack.MouseHover += new System.EventHandler(this.btBack_MouseHover);
             // 
             // btForward
             // 
@@ -71,22 +69,12 @@ namespace RssReader {
             this.btForward.UseVisualStyleBackColor = true;
             this.btForward.Click += new System.EventHandler(this.btForward_Click);
             // 
-            // hoverLabel
-            // 
-            this.hoverLabel.AutoSize = true;
-            this.hoverLabel.Location = new System.Drawing.Point(730, 13);
-            this.hoverLabel.Name = "hoverLabel";
-            this.hoverLabel.Size = new System.Drawing.Size(15, 12);
-            this.hoverLabel.TabIndex = 3;
-            this.hoverLabel.Text = " e";
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(847, 593);
-            this.Controls.Add(this.hoverLabel);
             this.Controls.Add(this.btForward);
             this.Controls.Add(this.btBack);
             this.Controls.Add(this.wbBrowser);
@@ -94,7 +82,6 @@ namespace RssReader {
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "32014";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -104,6 +91,5 @@ namespace RssReader {
         public System.Windows.Forms.WebBrowser wbBrowser;
         private System.Windows.Forms.Button btBack;
         private System.Windows.Forms.Button btForward;
-        private System.Windows.Forms.Label hoverLabel;
     }
 }

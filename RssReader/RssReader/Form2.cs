@@ -31,9 +31,5 @@ namespace RssReader {
             btForward.Enabled = wbBrowser.CanGoForward;
         }
 
-        private void btBack_MouseHover(object sender, EventArgs e) {
-            hoverLabel.Text = "aiu";
-            hoverLabel.Location = Cursor.Position;
-        }
     }
 }
