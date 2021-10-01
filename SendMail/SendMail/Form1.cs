@@ -16,6 +16,8 @@ namespace SendMail {
         private ConfigForm configform = new ConfigForm();
 
         private Settings setting = Settings.getInstance();
+
+        private SmtpClient smtpClient = null;
         public btConfig() {
             InitializeComponent();
         }
@@ -42,19 +44,33 @@ namespace SendMail {
                 mailMessage.Body = tbMessage.Text;
 
                 //SMTPを使ってメールを送信する
-                SmtpClient smtpClient = new SmtpClient();
+                if (smtpClient == null) {
+                    smtpClient = new SmtpClient();
+                    smtpClient.SendCompleted += SmtpClient_SendCompleted;
+
+                }
                 //メール送信のための認証情報を設定（ユーザー名、パスワード）
                 smtpClient.Credentials
                     = new NetworkCredential(setting.MailAddr, setting.Pass);
                 smtpClient.Host = setting.Host;
                 smtpClient.Port = setting.Port;
                 smtpClient.EnableSsl = setting.Ssl;
-                smtpClient.Send(mailMessage);
-
-                MessageBox.Show("送信完了");
+                smtpClient.SendAsync(mailMessage,null);
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void SmtpClient_SendCompleted(object sender, AsyncCompletedEventArgs e) {
+            
+            if (e.Error != null){
+                
+                MessageBox.Show("送信エラーが発生しました");
+            }
+            else {
+
+                MessageBox.Show("送信完了");
             }
         }
 

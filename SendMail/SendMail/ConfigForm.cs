@@ -16,11 +16,9 @@ namespace SendMail {
 
         public ConfigForm() {
             InitializeComponent();
-
         }
 
         private void btDefault_Click(object sender, EventArgs e) {
-
 
             tbHost.Text = setting.sHost();      //ホスト名
             tbPort.Text = setting.sPort();      //ポート番号

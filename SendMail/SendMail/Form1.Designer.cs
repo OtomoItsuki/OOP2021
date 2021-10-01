@@ -75,6 +75,7 @@ namespace SendMail {
             this.tbTo.Name = "tbTo";
             this.tbTo.Size = new System.Drawing.Size(590, 28);
             this.tbTo.TabIndex = 1;
+            this.tbTo.Text = "32014@ojs.ac.jp";
             // 
             // tbTitle
             // 
