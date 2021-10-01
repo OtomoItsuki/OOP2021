@@ -17,12 +17,13 @@ namespace SendMail {
 
         private Settings setting = Settings.getInstance();
 
-        private SmtpClient smtpClient = null;
+        SmtpClient smtpClient = null;
         public btConfig() {
             InitializeComponent();
         }
 
         private void btSend_Click(object sender, EventArgs e) {
+            btSend.Enabled = false;
             try {
                 //メール送信のためのインスタンスを生成
                 MailMessage mailMessage = new MailMessage();
@@ -50,13 +51,15 @@ namespace SendMail {
 
                 }
                 //メール送信のための認証情報を設定（ユーザー名、パスワード）
-                smtpClient.Credentials
-                    = new NetworkCredential(setting.MailAddr, setting.Pass);
+                if (smtpClient.Credentials == null) {
+                    smtpClient.Credentials
+                      = new NetworkCredential(setting.MailAddr, setting.Pass);
+                }
                 smtpClient.Host = setting.Host;
                 smtpClient.Port = setting.Port;
                 smtpClient.EnableSsl = setting.Ssl;
-                smtpClient.SendAsync(mailMessage,null);
-                
+                smtpClient.SendAsync(mailMessage, mailMessage);
+
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
@@ -65,17 +68,17 @@ namespace SendMail {
 
         private void SmtpClient_SendCompleted(object sender, AsyncCompletedEventArgs e) {
             MailMessage msg = (MailMessage)e.UserState;
-            if (e.Error != null){
-                
-                MessageBox.Show("送信エラーが発生しました");
+            if (e.Error != null) {
+                MessageBox.Show(e.Error.Message);
             }
             else {
-
                 MessageBox.Show("送信完了");
             }
-            msg.Dispose();
-            
+            btSend.Enabled = true;
         }
+
+        //送信終了すると呼ばれるメソッド
+
 
         private void button1_Click(object sender, EventArgs e) {
             configform.ShowDialog();
