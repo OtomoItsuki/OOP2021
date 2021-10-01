@@ -56,6 +56,7 @@ namespace SendMail {
                 smtpClient.Port = setting.Port;
                 smtpClient.EnableSsl = setting.Ssl;
                 smtpClient.SendAsync(mailMessage,null);
+                
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
@@ -63,7 +64,7 @@ namespace SendMail {
         }
 
         private void SmtpClient_SendCompleted(object sender, AsyncCompletedEventArgs e) {
-            
+            MailMessage msg = (MailMessage)e.UserState;
             if (e.Error != null){
                 
                 MessageBox.Show("送信エラーが発生しました");
@@ -72,6 +73,8 @@ namespace SendMail {
 
                 MessageBox.Show("送信完了");
             }
+            msg.Dispose();
+            
         }
 
         private void button1_Click(object sender, EventArgs e) {
