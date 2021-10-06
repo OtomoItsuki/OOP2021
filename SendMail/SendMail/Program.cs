@@ -13,7 +13,7 @@ namespace SendMail {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new btConfig());
+            Application.Run(new form1());
         }
     }
 }

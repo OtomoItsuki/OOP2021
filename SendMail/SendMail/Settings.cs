@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace SendMail {
     public class Settings {
@@ -39,6 +41,18 @@ namespace SendMail {
                 Instance = new Settings();
             }
             return Instance;
+        }
+        public static void settingsSave(Settings settings) {
+            var xws = new XmlWriterSettings {
+                Encoding = new System.Text.UTF8Encoding(false),
+                Indent = true,
+                IndentChars = " ",
+            };
+
+            using (var writer = XmlWriter.Create("mailsetting.xml", xws)) {
+                var serializer = new DataContractSerializer(settings.GetType());
+                serializer.WriteObject(writer, settings);
+            }
         }
     }
 }

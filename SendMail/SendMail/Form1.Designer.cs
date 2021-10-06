@@ -1,6 +1,6 @@
 ﻿
 namespace SendMail {
-    partial class btConfig {
+    partial class form1 {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>
@@ -35,7 +35,7 @@ namespace SendMail {
             this.tbBcc = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btConfig = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -141,23 +141,23 @@ namespace SendMail {
             this.label5.TabIndex = 6;
             this.label5.Text = "件名:";
             // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.Location = new System.Drawing.Point(95, 440);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 45);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "設定";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btConfig
+            // 
+            this.btConfig.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btConfig.Location = new System.Drawing.Point(95, 440);
+            this.btConfig.Name = "btConfig";
+            this.btConfig.Size = new System.Drawing.Size(99, 45);
+            this.btConfig.TabIndex = 6;
+            this.btConfig.Text = "設定";
+            this.btConfig.UseVisualStyleBackColor = true;
+            this.btConfig.Click += new System.EventHandler(this.btConfig_Click);
+            // 
+            // form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(717, 497);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btConfig);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbBcc);
@@ -169,8 +169,9 @@ namespace SendMail {
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "btConfig";
+            this.Name = "form1";
             this.Text = "メール送信アプリ";
+            this.Load += new System.EventHandler(this.form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,6 +190,6 @@ namespace SendMail {
         private System.Windows.Forms.TextBox tbBcc;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btConfig;
     }
 }

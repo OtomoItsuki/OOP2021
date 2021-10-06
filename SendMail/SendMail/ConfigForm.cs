@@ -20,17 +20,18 @@ namespace SendMail {
 
         private void btDefault_Click(object sender, EventArgs e) {
 
-            tbHost.Text = setting.sHost();      //ホスト名
-            tbPort.Text = setting.sPort();      //ポート番号
-            tbSender.Text = setting.sMailAddr();//送信元
-            tbUserName.Text = setting.sMailAddr();//ユーザー名
-            tbPass.Text = setting.sPass();      //パスワード
-            cbSsl.Checked = setting.bSsl();     //SSL
+            tbHost.Text      = setting.sHost();    //ホスト名
+            tbPort.Text      = setting.sPort();    //ポート番号
+            tbSender.Text    = setting.sMailAddr();//送信元
+            tbUserName.Text  = setting.sMailAddr();//ユーザー名
+            tbPass.Text      = setting.sPass();    //パスワード
+            cbSsl.Checked    = setting.bSsl();     //SSL
 
         }
 
         private void btOk_Click(object sender, EventArgs e) {
             SettingRegist();
+            
             this.Close();
         }
         
@@ -51,6 +52,8 @@ namespace SendMail {
             setting.MailAddr = tbSender.Text;
             setting.Pass = tbPass.Text;
             setting.Ssl = cbSsl.Checked;
+
+            Settings.settingsSave(setting);
         }
 
     }

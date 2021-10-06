@@ -3,23 +3,29 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
+
 
 namespace SendMail {
-    public partial class btConfig : Form {
+    public partial class form1 : Form {
 
         private ConfigForm configform = new ConfigForm();
 
-        private Settings setting = Settings.getInstance();
+        private Settings settings = Settings.getInstance();
 
-        SmtpClient smtpClient = null;
-        public btConfig() {
+        
+        public form1() {
             InitializeComponent();
+            
         }
 
         private void btSend_Click(object sender, EventArgs e) {
@@ -28,7 +34,7 @@ namespace SendMail {
                 //メール送信のためのインスタンスを生成
                 MailMessage mailMessage = new MailMessage();
                 //差出人アドレス
-                mailMessage.From = new MailAddress(setting.MailAddr);
+                mailMessage.From = new MailAddress(settings.MailAddr);
                 //宛先（To）
                 mailMessage.To.Add(tbTo.Text);
                 //宛先（Cc）
@@ -45,44 +51,60 @@ namespace SendMail {
                 mailMessage.Body = tbMessage.Text;
 
                 //SMTPを使ってメールを送信する
-                if (smtpClient == null) {
-                    smtpClient = new SmtpClient();
-                    smtpClient.SendCompleted += SmtpClient_SendCompleted;
+                SmtpClient smtpClient = new SmtpClient();
 
-                }
+                
                 //メール送信のための認証情報を設定（ユーザー名、パスワード）
-                if (smtpClient.Credentials == null) {
-                    smtpClient.Credentials
-                      = new NetworkCredential(setting.MailAddr, setting.Pass);
-                }
-                smtpClient.Host = setting.Host;
-                smtpClient.Port = setting.Port;
-                smtpClient.EnableSsl = setting.Ssl;
-                smtpClient.SendAsync(mailMessage, mailMessage);
+                smtpClient.Credentials
+                            = new NetworkCredential(settings.MailAddr, settings.Pass);
+                
+                smtpClient.Host = settings.Host;
+                smtpClient.Port = settings.Port;
+                smtpClient.EnableSsl = settings.Ssl;
+                string userState = "SendMail";
+                smtpClient.SendCompleted += SmtpClient_SendCompleted;
+                smtpClient.SendAsync(mailMessage, userState);
 
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
+
+                btSend.Enabled = true;
             }
         }
 
+        //送信終了すると呼ばれるメソッド
         private void SmtpClient_SendCompleted(object sender, AsyncCompletedEventArgs e) {
-            MailMessage msg = (MailMessage)e.UserState;
             if (e.Error != null) {
                 MessageBox.Show(e.Error.Message);
             }
+            
+            else if(e.Cancelled == true){
+            }
             else {
+
                 MessageBox.Show("送信完了");
             }
             btSend.Enabled = true;
         }
 
-        //送信終了すると呼ばれるメソッド
 
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void btConfig_Click(object sender, EventArgs e) {
             configform.ShowDialog();
             
+        }
+
+        private void form1_Load(object sender, EventArgs e) { 
+            if (!File.Exists("mailsetting.xml")) {
+                Settings.settingsSave(settings);
+            }
+            else {
+                var serializer = new DataContractSerializer(settings.GetType());
+
+                var xmlReader = XmlReader.Create("mailsetting.xml");
+                settings = (Settings)serializer.ReadObject(xmlReader);
+            }
         }
     }
 }
