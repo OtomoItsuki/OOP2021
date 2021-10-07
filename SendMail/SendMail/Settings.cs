@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -18,9 +19,9 @@ namespace SendMail {
         public bool Ssl { get; set; }       //SSL
 
         private Settings() {
-            
+
         }
-        //初期値
+        #region 初期値
         public string sHost() {
             return "smtp.gmail.com";
         }
@@ -36,13 +37,23 @@ namespace SendMail {
         public bool bSsl() {
             return true;
         }
+        #endregion
         public static Settings getInstance() {
             if (Instance == null) {
                 Instance = new Settings();
+                if (!File.Exists("mailsetting.xml")) {
+                    //mailsettingファイルがない場合、仮のファイルを生成する
+                    Instance.settingsSave(Instance);
+                }
+                using (var xmlReader = XmlReader.Create("mailsetting.xml")) {
+                    var serializer = new DataContractSerializer(Instance.GetType());
+                    Instance = (Settings)serializer.ReadObject(xmlReader);
+                    
+                }
             }
             return Instance;
         }
-        public static void settingsSave(Settings settings) {
+        public void settingsSave(Settings settings) {
             var xws = new XmlWriterSettings {
                 Encoding = new System.Text.UTF8Encoding(false),
                 Indent = true,
@@ -50,8 +61,8 @@ namespace SendMail {
             };
 
             using (var writer = XmlWriter.Create("mailsetting.xml", xws)) {
-                var serializer = new DataContractSerializer(settings.GetType());
-                serializer.WriteObject(writer, settings);
+                var serializer = new DataContractSerializer(this.GetType());
+                serializer.WriteObject(writer, this);
             }
         }
     }

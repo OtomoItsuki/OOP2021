@@ -12,7 +12,7 @@ namespace SendMail {
     public partial class ConfigForm : Form {
 
 
-        private Settings setting = Settings.getInstance();
+        private Settings settings = Settings.getInstance();
 
         public ConfigForm() {
             InitializeComponent();
@@ -20,12 +20,12 @@ namespace SendMail {
 
         private void btDefault_Click(object sender, EventArgs e) {
 
-            tbHost.Text      = setting.sHost();    //ホスト名
-            tbPort.Text      = setting.sPort();    //ポート番号
-            tbSender.Text    = setting.sMailAddr();//送信元
-            tbUserName.Text  = setting.sMailAddr();//ユーザー名
-            tbPass.Text      = setting.sPass();    //パスワード
-            cbSsl.Checked    = setting.bSsl();     //SSL
+            tbHost.Text      = settings.sHost();    //ホスト名
+            tbPort.Text      = settings.sPort();    //ポート番号
+            tbSender.Text    = settings.sMailAddr();//送信元
+            tbUserName.Text  = settings.sMailAddr();//ユーザー名
+            tbPass.Text      = settings.sPass();    //パスワード
+            cbSsl.Checked    = settings.bSsl();     //SSL
 
         }
 
@@ -44,16 +44,27 @@ namespace SendMail {
         }
         private void SettingRegist() {
 
-            setting.Host = tbHost.Text;
+            settings.Host = tbHost.Text;
             if (int.TryParse(tbPort.Text,out int iPort)) {
 
-                setting.Port = iPort;
+                settings.Port = iPort;
             }
-            setting.MailAddr = tbSender.Text;
-            setting.Pass = tbPass.Text;
-            setting.Ssl = cbSsl.Checked;
+            settings.MailAddr = tbSender.Text;
+            settings.Pass = tbPass.Text;
+            settings.Ssl = cbSsl.Checked;
 
-            Settings.settingsSave(setting);
+            settings.settingsSave(settings);
+        }
+
+        private void ConfigForm_Load(object sender, EventArgs e) {
+
+            tbHost.Text = settings.Host;    //ホスト名
+            tbPort.Text = settings.Port.ToString();    //ポート番号
+            tbSender.Text = settings.MailAddr;//送信元
+            tbUserName.Text = settings.MailAddr;//ユーザー名
+            tbPass.Text = settings.Pass;    //パスワード
+            cbSsl.Checked = settings.Ssl;     //SSL
+
         }
 
     }

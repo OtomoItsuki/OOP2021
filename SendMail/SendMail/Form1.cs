@@ -22,13 +22,13 @@ namespace SendMail {
 
         private Settings settings = Settings.getInstance();
 
-        
         public form1() {
             InitializeComponent();
             
         }
 
         private void btSend_Click(object sender, EventArgs e) {
+            if(se)
             btSend.Enabled = false;
             try {
                 //メール送信のためのインスタンスを生成
@@ -53,11 +53,11 @@ namespace SendMail {
                 //SMTPを使ってメールを送信する
                 SmtpClient smtpClient = new SmtpClient();
 
-                
+
                 //メール送信のための認証情報を設定（ユーザー名、パスワード）
                 smtpClient.Credentials
                             = new NetworkCredential(settings.MailAddr, settings.Pass);
-                
+
                 smtpClient.Host = settings.Host;
                 smtpClient.Port = settings.Port;
                 smtpClient.EnableSsl = settings.Ssl;
@@ -88,23 +88,10 @@ namespace SendMail {
             btSend.Enabled = true;
         }
 
-
-
         private void btConfig_Click(object sender, EventArgs e) {
             configform.ShowDialog();
             
         }
 
-        private void form1_Load(object sender, EventArgs e) { 
-            if (!File.Exists("mailsetting.xml")) {
-                Settings.settingsSave(settings);
-            }
-            else {
-                var serializer = new DataContractSerializer(settings.GetType());
-
-                var xmlReader = XmlReader.Create("mailsetting.xml");
-                settings = (Settings)serializer.ReadObject(xmlReader);
-            }
-        }
     }
 }

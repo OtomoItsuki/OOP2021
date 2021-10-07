@@ -171,7 +171,6 @@ namespace SendMail {
             this.Controls.Add(this.label1);
             this.Name = "form1";
             this.Text = "メール送信アプリ";
-            this.Load += new System.EventHandler(this.form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

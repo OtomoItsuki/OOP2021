@@ -218,6 +218,7 @@ namespace SendMail {
             this.Controls.Add(this.gbServer);
             this.Name = "ConfigForm";
             this.Text = "ConfigForm";
+            this.Load += new System.EventHandler(this.ConfigForm_Load);
             this.gbServer.ResumeLayout(false);
             this.gbServer.PerformLayout();
             this.groupBox1.ResumeLayout(false);
