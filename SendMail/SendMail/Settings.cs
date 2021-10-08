@@ -41,19 +41,25 @@ namespace SendMail {
         public static Settings getInstance() {
             if (Instance == null) {
                 Instance = new Settings();
-                if (!File.Exists("mailsetting.xml")) {
-                    //mailsettingファイルがない場合、仮のファイルを生成する
-                    Instance.settingsSave(Instance);
-                }
-                using (var xmlReader = XmlReader.Create("mailsetting.xml")) {
-                    var serializer = new DataContractSerializer(Instance.GetType());
-                    Instance = (Settings)serializer.ReadObject(xmlReader);
-                    
+                if (File.Exists("mailsetting.xml")) {
+
+                    using (var xmlReader = XmlReader.Create("mailsetting.xml")) {
+                        var serializer = new DataContractSerializer(Instance.GetType());
+                        Instance = (Settings)serializer.ReadObject(xmlReader);
+
+                    }
                 }
             }
             return Instance;
         }
-        public void settingsSave(Settings settings) {
+        public void setSendConfig(string host, int port, string mailAddr, string pass, bool ssl) {
+
+            Host = host;
+            Port = port;
+            MailAddr = mailAddr;
+            Pass = pass;
+            Ssl = Ssl;
+
             var xws = new XmlWriterSettings {
                 Encoding = new System.Text.UTF8Encoding(false),
                 Indent = true,

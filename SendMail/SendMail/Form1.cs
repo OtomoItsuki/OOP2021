@@ -28,7 +28,7 @@ namespace SendMail {
         }
 
         private void btSend_Click(object sender, EventArgs e) {
-            if(se)
+            
             btSend.Enabled = false;
             try {
                 //メール送信のためのインスタンスを生成
@@ -93,5 +93,6 @@ namespace SendMail {
             
         }
 
+        
     }
 }

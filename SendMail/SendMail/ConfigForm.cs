@@ -30,8 +30,7 @@ namespace SendMail {
         }
 
         private void btOk_Click(object sender, EventArgs e) {
-            SettingRegist();
-            
+            btApply_Click(sender, e);
             this.Close();
         }
         
@@ -39,21 +38,7 @@ namespace SendMail {
             this.Close();
         }
         private void btApply_Click(object sender, EventArgs e) {
-            SettingRegist();
-
-        }
-        private void SettingRegist() {
-
-            settings.Host = tbHost.Text;
-            if (int.TryParse(tbPort.Text,out int iPort)) {
-
-                settings.Port = iPort;
-            }
-            settings.MailAddr = tbSender.Text;
-            settings.Pass = tbPass.Text;
-            settings.Ssl = cbSsl.Checked;
-
-            settings.settingsSave(settings);
+            settings.setSendConfig(tbHost.Text, int.Parse(tbPort.Text), tbSender.Text,tbPass.Text,cbSsl.Checked);
         }
 
         private void ConfigForm_Load(object sender, EventArgs e) {
