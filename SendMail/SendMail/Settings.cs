@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -17,6 +18,7 @@ namespace SendMail {
         public string MailAddr { get; set; }//メールアドレス
         public string Pass { get; set; }    //パスワード
         public bool Ssl { get; set; }       //SSL
+        
 
         private Settings() {
 
@@ -41,24 +43,27 @@ namespace SendMail {
         public static Settings getInstance() {
             if (Instance == null) {
                 Instance = new Settings();
-                if (File.Exists("mailsetting.xml")) {
-
+                try {
                     using (var xmlReader = XmlReader.Create("mailsetting.xml")) {
                         var serializer = new DataContractSerializer(Instance.GetType());
                         Instance = (Settings)serializer.ReadObject(xmlReader);
 
                     }
                 }
+                //ファイルが存在しないとき
+                catch (Exception) {
+
+                }
             }
             return Instance;
         }
-        public void setSendConfig(string host, int port, string mailAddr, string pass, bool ssl) {
+        public bool setSendConfig(string host, int port, string mailAddr, string pass, bool ssl) {
 
             Host = host;
             Port = port;
             MailAddr = mailAddr;
             Pass = pass;
-            Ssl = Ssl;
+            Ssl = ssl;
 
             var xws = new XmlWriterSettings {
                 Encoding = new System.Text.UTF8Encoding(false),
@@ -70,6 +75,8 @@ namespace SendMail {
                 var serializer = new DataContractSerializer(this.GetType());
                 serializer.WriteObject(writer, this);
             }
+            return true;
         }
+
     }
 }

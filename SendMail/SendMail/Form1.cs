@@ -28,12 +28,23 @@ namespace SendMail {
         }
 
         private void btSend_Click(object sender, EventArgs e) {
-
+            
             while (!File.Exists("mailsetting.xml")) {
                 MessageBox.Show("認証情報を設定してください");
                 btConfig_Click(sender ,e);
             }
-                btSend.Enabled = false;
+            //宛先アドレスチェック
+            if (tbTo.Text == "") {
+                MessageBox.Show("To(宛先)にメールアドレスを入力してください");
+                return;
+            }
+            //本文入力チェック
+            if (string.IsNullOrEmpty(tbMessage.Text) || string.IsNullOrWhiteSpace(tbMessage.Text)) {
+                MessageBox.Show("本文にメッセージを入力してください\r\n(空白のみも許可されません)");
+                return;
+
+            }
+            btSend.Enabled = false;
             try {
                 //メール送信のためのインスタンスを生成
                 MailMessage mailMessage = new MailMessage();
@@ -88,6 +99,7 @@ namespace SendMail {
             else {
 
                 MessageBox.Show("送信完了");
+                新規作成ToolStripMenuItem_Click(sender, e);
             }
             btSend.Enabled = true;
         }
@@ -97,6 +109,17 @@ namespace SendMail {
             
         }
 
+        private void 新規作成ToolStripMenuItem_Click(object sender, EventArgs e) {
+            tbTo.Text = null;
+            tbBcc.Text = null;
+            tbCc.Text = null;
+            tbTitle.Text = null;
+            tbMessage.Text = null;
+        }
+
+        private void 終了XToolStripMenuItem_Click(object sender, EventArgs e) {
+            this.Close();
+        }
         
     }
 }
