@@ -28,8 +28,12 @@ namespace SendMail {
         }
 
         private void btSend_Click(object sender, EventArgs e) {
-            
-            btSend.Enabled = false;
+
+            while (!File.Exists("mailsetting.xml")) {
+                MessageBox.Show("認証情報を設定してください");
+                btConfig_Click(sender ,e);
+            }
+                btSend.Enabled = false;
             try {
                 //メール送信のためのインスタンスを生成
                 MailMessage mailMessage = new MailMessage();
@@ -68,7 +72,7 @@ namespace SendMail {
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
-
+                
                 btSend.Enabled = true;
             }
         }
