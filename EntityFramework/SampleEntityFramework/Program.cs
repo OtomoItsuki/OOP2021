@@ -23,6 +23,7 @@ namespace SampleEntityFramework
             //DisplayAllBooks();
             //AddAuthors();
             //AddBooks();
+            DeleteBook();
             //using (var db = new BooksDbContext()) {
             //    var books = db.Books.OrderBy(b => b.PublishedYear).ThenBy(b => b.Author.Name);
             //    foreach (var book in books) {
@@ -49,7 +50,70 @@ namespace SampleEntityFramework
             Exercise13_1_5();
             Console.WriteLine("--------");
 
+            InsertByConsole();
 
+        }
+
+        private static void InsertByConsole()
+        {
+            Console.WriteLine("{0}本の追加");
+            Console.WriteLine("{1}作者の追加");
+            switch (int.Parse(Console.ReadLine())) {
+                case 0:
+                    InsertBookConsole();
+                    break;
+                case 1:
+                    InsertAuthorConsole();
+                    break;
+                default:
+                    Console.WriteLine("終了します");
+                    break;
+            }
+
+        }
+
+        private static void InsertAuthorConsole()
+        {
+            
+        }
+
+        private static void InsertBookConsole()
+        {
+            
+
+            using (var db = new BooksDbContext()) {
+
+                Console.WriteLine("本の作者を入力してください");
+                string authorName = Console.ReadLine();
+                var author = db.Authors.SingleOrDefault(a => a.Name == authorName);
+                if (author is null) {
+                    Console.WriteLine("作者が存在しません");
+                    Console.WriteLine("作者を作成してください");
+                    InsertAuthorConsole();
+                    author = db.Authors.Single(a => a.Name == authorName);
+                }
+                
+                Console.WriteLine("本のタイトルを入力してください");
+                string title = Console.ReadLine();
+                 if(db.Authors.Any(x => x.Books.Any(y => y.Title == title))) {
+                    Console.WriteLine("同じ作者の同じタイトルが存在します");
+                    Console.WriteLine("追加処理を終了します");
+                    return;
+                }
+                Console.WriteLine("本の発行年を入力してください");
+                int? publishedYear = int.Parse(Console.ReadLine());
+
+
+
+                var book = new Book {
+                    Title = title,
+                    PublishedYear = publishedYear,
+                    Author = author
+                };
+                //db.Books.Add(book);
+
+                //db.SaveChanges();
+            }
         }
 
         private static void Exercise13_1_5()
@@ -57,6 +121,7 @@ namespace SampleEntityFramework
             using (var db = new BooksDbContext()) {
                 foreach (var author in db.Authors.OrderBy(x=> x.Birthday)) {
                     Console.WriteLine($"{author.Name} {author.Birthday.ToString("yyyy/MM/dd")}");
+
                     foreach (var book in author.Books) {
                         Console.WriteLine($"--{book.Title} {book.PublishedYear}");
                     }
@@ -90,8 +155,7 @@ namespace SampleEntityFramework
         private static void Exercise13_1_2()
         {
             using (var db = new BooksDbContext()) {
-                var books = db.Books;
-                foreach (var book in books) {
+                foreach (var book in db.Books) {
                     Console.WriteLine($"{book.Title} {book.PublishedYear} {book.Author.Name}");
                 }
             }
@@ -143,7 +207,7 @@ namespace SampleEntityFramework
         private static void DeleteBook()
         {
             using (var db = new BooksDbContext()) {
-                var book = db.Books.SingleOrDefault(X => X.Id == 10);
+                var book = db.Books.SingleOrDefault(X => X.Id == 9);
                 if (book != null) {
                     db.Books.Remove(book);
                     db.SaveChanges();
