@@ -23,7 +23,10 @@ namespace SampleEntityFramework
             //DisplayAllBooks();
             //AddAuthors();
             //AddBooks();
-            DeleteBook();
+            
+            DeleteBook();       //
+            DeleteAuthor();     //必要以上にデータを追加させないため
+
             //using (var db = new BooksDbContext()) {
             //    var books = db.Books.OrderBy(b => b.PublishedYear).ThenBy(b => b.Author.Name);
             //    foreach (var book in books) {
@@ -210,6 +213,16 @@ namespace SampleEntityFramework
                 var book = db.Books.SingleOrDefault(X => X.Id == 9);
                 if (book != null) {
                     db.Books.Remove(book);
+                    db.SaveChanges();
+                }
+            }
+        }
+        private static void DeleteAuthor()
+        {
+            using (var db = new BooksDbContext()) {
+                var author = db.Authors.SingleOrDefault(X => X.Id == 7);
+                if (author != null) {
+                    db.Authors.Remove(author);
                     db.SaveChanges();
                 }
             }
