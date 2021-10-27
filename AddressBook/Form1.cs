@@ -54,16 +54,19 @@ namespace AddressBook
 
         private void personDataGridView_SelectionChanged(object sender, EventArgs e)
         {
+            if (personDataGridView.Rows.Count != 0) {
 
-            tbName.Text = personDataGridView.CurrentRow.Cells[1].Value.ToString();
-            dtpDate.Value = (DateTime)personDataGridView.CurrentRow.Cells[2].Value;
-            tbTelephone.Text = personDataGridView.CurrentRow.Cells[3].Value.ToString();
-            tbMemo.Text = personDataGridView.CurrentRow.Cells[4].Value.ToString();
+
+                tbName.Text = personDataGridView.CurrentRow.Cells[1].Value.ToString();
+                dtpDate.Value = (DateTime)personDataGridView.CurrentRow.Cells[2].Value;
+                tbTelephone.Text = personDataGridView.CurrentRow.Cells[3].Value.ToString();
+                tbMemo.Text = personDataGridView.CurrentRow.Cells[4].Value.ToString();
+            }
         }
 
         private void btDateFilter_Click(object sender, EventArgs e)
         {
-            this.personTableAdapter.FillByBirthday(this.infosys202103DataSet.Person, dtpDateSearch.Value.Date);
+            this.personTableAdapter.FillByBirthday(this.infosys202103DataSet.Person, dtpDateSearch.Text);
         }
     }
 }
