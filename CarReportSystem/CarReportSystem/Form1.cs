@@ -151,8 +151,8 @@ namespace CarReportSystem {
             //dgvRegistData.Refresh();
 
         }
-        //保存ボタン
-        private void btSave_Click(object sender, EventArgs e) {
+        //更新ボタンイベント処理
+        private void btUpdate_Click(object sender, EventArgs e) {
             if (carReportDataGridView.CurrentRow == null) {
                 return;
             }
@@ -161,6 +161,11 @@ namespace CarReportSystem {
             carReportDataGridView.CurrentRow.Cells[3].Value = selectedGroup();  //メーカー
             carReportDataGridView.CurrentRow.Cells[4].Value = cbCarName.Text;   //車名
             carReportDataGridView.CurrentRow.Cells[5].Value = tbReport.Text;    //レポート
+
+
+            this.Validate();
+            this.carReportBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202103DataSet);
 #if false
             try {
                 if (sfdFileSave.ShowDialog() == DialogResult.OK) {
@@ -179,8 +184,8 @@ namespace CarReportSystem {
             }
 #endif
         }
-        //開くボタン
-        private void btOpen_Click(object sender, EventArgs e) {
+        //接続ボタンイベント処理
+        private void btConnect_Click(object sender, EventArgs e) {
             // TODO: このコード行はデータを 'infosys202103DataSet.CarReport' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
             this.carReportTableAdapter.Fill(this.infosys202103DataSet.CarReport);
 
