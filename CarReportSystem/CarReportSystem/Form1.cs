@@ -37,7 +37,6 @@ namespace CarReportSystem {
                 if (rb.Checked) {
                     return (CarReport.MakerGroup)int.Parse(((string)((RadioButton)rb).Tag));
                 }
-
             }
             return CarReport.MakerGroup.その他;
         }
@@ -158,7 +157,13 @@ namespace CarReportSystem {
             }
             carReportDataGridView.CurrentRow.Cells[1].Value = dtpDate.Value;    //日付
             carReportDataGridView.CurrentRow.Cells[2].Value = cbAuthor.Text;    //記録者
-            carReportDataGridView.CurrentRow.Cells[3].Value = selectedGroup();  //メーカー
+            if (!(selectedGroup() == CarReport.MakerGroup.その他)) {
+                carReportDataGridView.CurrentRow.Cells[3].Value = selectedGroup();  //メーカー
+
+            }
+            else if (carReportDataGridView.CurrentRow.Cells[3].Value.ToString() == "") {
+                carReportDataGridView.CurrentRow.Cells[3].Value = CarReport.MakerGroup.その他;
+            }
             carReportDataGridView.CurrentRow.Cells[4].Value = cbCarName.Text;   //車名
             carReportDataGridView.CurrentRow.Cells[5].Value = tbReport.Text;    //レポート
             carReportDataGridView.CurrentRow.Cells[6].Value = ImageToByteArray(pbPicture.Image);    //画像
@@ -223,7 +228,15 @@ namespace CarReportSystem {
         }
 
         private void fmMain_Load(object sender, EventArgs e) {
-            //dgvRegistData.Columns[5].Visible = false;
+            carReportDataGridView.Columns[0].Visible = false;
+            carReportDataGridView.Columns[1].HeaderText = "日付";
+            carReportDataGridView.Columns[2].HeaderText = "記録者";
+            carReportDataGridView.Columns[3].HeaderText = "メーカー";
+            carReportDataGridView.Columns[4].HeaderText = "車名";
+            carReportDataGridView.Columns[5].HeaderText = "レポート";
+            carReportDataGridView.Columns[6].HeaderText = "画像";
+
+
         }
 
         private void carReportBindingNavigatorSaveItem_Click(object sender, EventArgs e) {
@@ -235,7 +248,7 @@ namespace CarReportSystem {
 
 
         private void carReportDataGridView_SelectionChanged(object sender, EventArgs e) {
-
+            
             if (carReportDataGridView.CurrentRow == null) {
                 return;
             }
@@ -245,20 +258,26 @@ namespace CarReportSystem {
                 dtpDate.Value = (DateTime)carReportDataGridView.CurrentRow.Cells[1].Value;      //日付
                 cbAuthor.Text = carReportDataGridView.CurrentRow.Cells[2].Value.ToString();     //記録者
                 //メーカー(文字列 → 列挙型)
-                setMakerRadioButton(
-                        (CarReport.MakerGroup)Enum.Parse(typeof(CarReport.MakerGroup),
-                                carReportDataGridView.CurrentRow.Cells[3].Value.ToString())
-                        );
+                if (Enum.IsDefined(typeof(CarReport.MakerGroup),carReportDataGridView.CurrentRow.Cells[3].Value)) {
+
+                    setMakerRadioButton(
+                            (CarReport.MakerGroup)Enum.Parse(typeof(CarReport.MakerGroup),
+                                    carReportDataGridView.CurrentRow.Cells[3].Value.ToString())
+                            );
+                }
+                else {
+                    setMakerRadioButton(CarReport.MakerGroup.その他);
+                }
                 
                 cbCarName.Text = carReportDataGridView.CurrentRow.Cells[4].Value.ToString();    //車名
                 tbReport.Text = carReportDataGridView.CurrentRow.Cells[5].Value.ToString();     //レポート
                 pbPicture.Image = ByteArrayToImage((byte[])carReportDataGridView.CurrentRow.Cells[6].Value);    //画像
             }
             catch (Exception) {
+                setMakerRadioButton(CarReport.MakerGroup.その他);
                 pbPicture.Image = null;
             }
 
-            
 
         }// バイト配列をImageオブジェクトに変換
         public static Image ByteArrayToImage(byte[] b) {
@@ -273,5 +292,8 @@ namespace CarReportSystem {
             return b;
         }
 
+        private void carReportDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e) {
+
+        }
     }
 }
