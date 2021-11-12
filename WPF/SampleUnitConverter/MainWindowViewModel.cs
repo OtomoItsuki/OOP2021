@@ -36,8 +36,8 @@ namespace SampleUnitConverter {
         }
         //コンストラクタ
         public MainWindowViewModel() {
-            this.CurrentMetricUnit = MetricUnit.Units.First();
-            this.CurrentImperialUnit = ImperialUnit.Units.First();
+            this.CurrentMetricUnit = MetricUnit.Units.First();      //メートル単位
+            this.CurrentImperialUnit = ImperialUnit.Units.First();  //ヤード単位
             
             this.MetricToImperialUnit = 
                 new DelegateCommand(
