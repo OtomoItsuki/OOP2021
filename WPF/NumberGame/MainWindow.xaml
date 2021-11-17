@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <DockPanel>
-        <Label DockPanel.Dock="Top" Content=""/>
-        <Grid>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <Label x:Name="lbclearTxt" Content="" FontSize="20"/>
+            <Label x:Name="lbclickCount" Content="" FontSize="20"/>
+        </StackPanel>
+        <Grid x:Name="grNumberGame">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>

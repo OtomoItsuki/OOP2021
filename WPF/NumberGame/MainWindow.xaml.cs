@@ -18,16 +18,28 @@ namespace NumberGame {
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window {
-        int Anser;
+        private string Anser;
+        int clickCount;
         public MainWindow() {
             InitializeComponent();
             Random rand = new Random();
-            Anser = rand.Next(0, 25);
+            Anser = rand.Next(1, 26).ToString();
+            Button bt1 = new Button();
+            bt1.Content = "テスト";
+            
         }
 
-        private void Button_Click(Button sender, RoutedEventArgs e) {
-            if (sender.Content.ToString() == Anser.ToString()) {
 
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            Button button = (Button)sender;
+            clickCount++;
+            lbclickCount.Content = "クリック数:" + clickCount;
+            if (button.Content.ToString() == Anser) {
+                lbclearTxt.Content = "正解:" + Anser;
+                MessageBox.Show("正解!");
+            }
+            else {
+                lbclearTxt.Content = "はずれ";
             }
         }
     }
