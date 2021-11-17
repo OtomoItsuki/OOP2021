@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NumberGame"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
             <Label x:Name="lbclearTxt" Content="" FontSize="20"/>
             <Label x:Name="lbclickCount" Content="" FontSize="20"/>
         </StackPanel>
-        <Grid x:Name="grNumberGame">
-            <Grid.ColumnDefinitions>
+        <Grid x:Name="grWindow">
+            <!--<Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -55,7 +55,7 @@
             <Button Grid.Row="4" Grid.Column="1" Content="22" FontSize="50" Click="Button_Click"/>
             <Button Grid.Row="4" Grid.Column="2" Content="23" FontSize="50" Click="Button_Click"/>
             <Button Grid.Row="4" Grid.Column="3" Content="24" FontSize="50" Click="Button_Click"/>
-            <Button Grid.Row="4" Grid.Column="4" Content="25" FontSize="50" Click="Button_Click"/>
+            <Button Grid.Row="4" Grid.Column="4" Content="25" FontSize="50" Click="Button_Click"/>-->
 
 
         </Grid>
