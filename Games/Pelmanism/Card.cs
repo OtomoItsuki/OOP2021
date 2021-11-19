@@ -35,14 +35,14 @@ namespace Pelmanism {
         public void Open() {
             State = true;   //表
             BackColor = OpenColor;
-            Text = Picture;
+            //Image = Image.FromFile(@".\画像\天文台.jpg");
             Enabled = false; //選択不可
         }
         //カードをクローズする
         public void Close() {
             State = false;   //表
             BackColor = CloseColor;
-            Text = "";
+            Image = null;
             Enabled = true; //選択可
         }
 
