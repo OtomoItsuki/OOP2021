@@ -175,7 +175,7 @@ namespace Pelmanism {
             }
 #endif
             for (int i = 0; i < Cards.Length; i++) {
-                index1 = random.Next(Cards.Length);
+                index1 = random.Next(i,Cards.Length);
                 value = Cards[i].Picture;
                 Cards[i].Picture = Cards[index1].Picture;
                 Cards[index1].Picture = value;
