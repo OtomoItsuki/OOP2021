@@ -187,6 +187,7 @@ namespace Pelmanism {
 
         private void timer1_Tick(object sender, EventArgs e) {
             gameSec--;
+            //ゲームオーバー処理
             if (gameSec <= 0) {
                 timer1.Stop();
                 labelGuidance.Text = "時間切れです";
@@ -194,6 +195,7 @@ namespace Pelmanism {
                 foreach (var card in playingCards) {
                     card.Enabled = false;
                 }
+                player.Reset();
             }
             labelSec.Text = gameSec + "秒経過";
 
