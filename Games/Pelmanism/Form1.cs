@@ -23,7 +23,9 @@ namespace Pelmanism {
         /// <param name="cards">カード配列への参照</param>
         private void CreateCards(ref Card[] cards) {
             string[] picture = {
-                "〇","●","△","▲","□","■","◇","◆","☆","★","※","×",
+                @".\画像\s-1.gif",@".\画像\s-2.gif",@".\画像\s-3.gif",@".\画像\s-4.gif",@".\画像\s-5.gif",
+                @".\画像\s-6.gif",@".\画像\s-7.gif",@".\画像\s-8.gif",@".\画像\s-9.gif",@".\画像\s-10.gif",
+                @".\画像\s-j.gif",@".\画像\s-q.gif",
             };
             //カードのインスタンスの生成
             cards = new Card[picture.Length * 2];
@@ -151,7 +153,7 @@ namespace Pelmanism {
                 card.Close();
             }
             buttonStart.Enabled = false;    //スタートボタン選択不可
-            gameSec = 0;
+            gameSec = 60;
             timer1.Start();
 
             labelGuidance.Text = "クリックしてカードをめくってください。";
@@ -184,7 +186,7 @@ namespace Pelmanism {
         }
 
         private void timer1_Tick(object sender, EventArgs e) {
-            gameSec++;
+            gameSec--;
             labelSec.Text = gameSec + "秒経過";
         }
     }
