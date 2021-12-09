@@ -26,7 +26,7 @@ namespace SendMail {
             InitializeComponent();
             
         }
-
+        
         private void btSend_Click(object sender, EventArgs e) {
             
             while (!File.Exists("mailsetting.xml")) {
@@ -43,6 +43,10 @@ namespace SendMail {
                 MessageBox.Show("本文にメッセージを入力してください\r\n(空白のみも許可されません)");
                 return;
 
+            }
+            if (settings == null) {
+                MessageBox.Show("XMLファイルを読み込めませんでした\r\n再設定してください");
+                btConfig_Click(sender, e);
             }
             btSend.Enabled = false;
             try {

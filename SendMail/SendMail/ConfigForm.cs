@@ -42,7 +42,9 @@ namespace SendMail {
         }
 
         private void ConfigForm_Load(object sender, EventArgs e) {
-
+            if (settings == null) {
+                return;
+            }
             tbHost.Text = settings.Host;    //ホスト名
             tbPort.Text = settings.Port.ToString();    //ポート番号
             tbSender.Text = settings.MailAddr;//送信元

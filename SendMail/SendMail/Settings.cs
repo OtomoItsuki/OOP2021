@@ -52,7 +52,7 @@ namespace SendMail {
                 }
                 //ファイルが存在しないとき
                 catch (Exception) {
-
+                    return null;
                 }
             }
             return Instance;
